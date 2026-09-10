@@ -51,7 +51,7 @@ $$z = -3.817 + 0.077 \cdot DR + 0.058 \cdot 3DCR + 0.008 \cdot 30DAR, \quad P_{\
 
 ### 2. Spatial Machine Learning Classifier
 The calculated $z$-score is fed into an **XGBoost Classifier** alongside static topographical features:
-$$\text{Feature Vector} = \big[ z\text{-score},\, DR,\, 3DCR,\, 30DAR,\, \text{base\_slope},\, \text{soil\_porosity} \big]$$
+$$\text{Feature Vector} = \big[ z\text{-score},\\, DR,\\, 3DCR,\\, 30DAR,\\, \text{base\\_slope},\\, \text{soil\\_porosity} \big]$$
 * **$P < 0.40$**: Low Risk (Green)
 * **$0.40 \le P < 0.70$**: Moderate Watch (Orange)
 * **$P \ge 0.70$**: Critical Slope Failure Warning (Red) $\rightarrow$ Triggers automated evacuation and bypass routing.
