@@ -14,12 +14,12 @@ def get_grid_risk(db: Session = Depends(get_db)):
     """
     Returns GeoJSON FeatureCollection of all grid cells and their current_risk.
     """
-    cells = db.query(GridCell).all()
+    # Use PostGIS ST_AsGeoJSON to ensure valid Float arrays, avoiding Shapely string casting issues
+    from sqlalchemy import func
+    cells = db.query(GridCell.grid_id, GridCell.current_risk, GridCell.base_slope, GridCell.soil_porosity, func.ST_AsGeoJSON(GridCell.geom).label('geom_json')).all()
     features = []
     
     for cell in cells:
-        # geoalchemy2 provides to_shape to easily convert WKBElement to Shapely geometry
-        geom = to_shape(cell.geom)
         features.append({
             "type": "Feature",
             "properties": {
@@ -28,7 +28,7 @@ def get_grid_risk(db: Session = Depends(get_db)):
                 "base_slope": cell.base_slope,
                 "soil_porosity": cell.soil_porosity
             },
-            "geometry": mapping(geom)
+            "geometry": json.loads(cell.geom_json)
         })
         
     return {
