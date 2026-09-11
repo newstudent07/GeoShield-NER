@@ -9,3 +9,9 @@ pandas
 httpx
 pydantic
 pytest
+torch
+torchvision
+Pillow
+piexif
+opencv-python
+
