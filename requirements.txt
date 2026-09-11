@@ -14,4 +14,7 @@ torchvision
 Pillow
 piexif
 opencv-python
-
+onnx
+fastapi
+uvicorn
+python-dotenv
