@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: geoshield_postgis
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: geoshield123
+      POSTGRES_DB: geoshield_db
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+
+volumes:
+  postgis_data:
