@@ -3,3 +3,9 @@ pyproj
 SQLAlchemy
 GeoAlchemy2
 psycopg2-binary
+xgboost
+scikit-learn
+pandas
+httpx
+pydantic
+pytest
